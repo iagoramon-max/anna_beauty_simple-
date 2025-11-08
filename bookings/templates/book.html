@@ -1,25 +1,57 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<h3>💅 Agende seu horário</h3>
-<p>Preencha as informações abaixo e garanta seu momento de beleza:</p>
-<form method="post" id="bookingForm">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button class="btn btn-primary mt-2">Confirmar agendamento</button>
-</form>
-
-<script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
-<script>
-grecaptcha.ready(function() {
-  const form = document.getElementById('bookingForm');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', {action: 'submit'}).then(function(token) {
-      document.querySelector('input[name="recaptcha_token"]').value = token;
-      form.submit();
-    });
-  });
-});
-</script>
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <div class="card shadow-lg border-0">
+        <div class="card-header text-center bg-light">
+          <h3 class="fw-bold mb-0">Agende seu horário</h3>
+          <small class="text-muted">Garanta seu momento de beleza com a Anna Beauty Studio 💖</small>
+        </div>
+        <div class="card-body p-4">
+          <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label">Seu nome</label>
+              {{ form.name|add_class:"form-control" }}
+            </div>
+            <div class="mb-3">
+              <label class="form-label">WhatsApp</label>
+              {{ form.phone|add_class:"form-control" }}
+            </div>
+            <div class="mb-3">
+              <label class="form-label">E-mail</label>
+              {{ form.email|add_class:"form-control" }}
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Serviço</label>
+              {{ form.service|add_class:"form-select" }}
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Data</label>
+                {{ form.date|add_class:"form-control" }}
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Hora</label>
+                {{ form.time|add_class:"form-control" }}
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Observações</label>
+              {{ form.notes|add_class:"form-control" }}
+            </div>
+            <div class="text-center">
+              <button class="btn btn-primary w-100" type="submit">
+                Confirmar agendamento
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
-
