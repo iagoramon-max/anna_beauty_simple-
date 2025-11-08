@@ -1,1 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>👏👏 Isso! Agendamento confirmado.</h3>
+<p>Serviço: {{ appointment.service.name }}</p>
+<p>Data e hora: {{ appointment.start_datetime|date:"d/m/Y H:i" }}</p>
+<p>💖 Faltam {{ appointment.start_datetime|timeuntil }} pro seu momento de beleza!</p>
+<p><a href="/" class="btn btn-success mt-3">Voltar à página inicial</a></p>
+{% endblock %}
 
