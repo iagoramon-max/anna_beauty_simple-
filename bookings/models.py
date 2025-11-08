@@ -31,3 +31,9 @@ class Appointment(models.Model):
     def __str__(self):
         return f"{self.service.name} - {self.client.name} - {self.start_datetime.strftime('%d/%m/%Y %H:%M')}"
 
+class Service(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+
+    def __str__(self):
+        return f"{self.name} - R$ {self.price:.2f}"
