@@ -1,2 +1,1 @@
-web: gunicorn anna_beauty.wsgi
-worker: celery -A anna_beauty worker -l info
+web: bash -c "python manage.py makemigrations --noinput && python manage.py migrate --noinput && python manage.py shell -c 'from bookings.models import Service; Service.objects.get_or_create(name=\"Limpeza de Pele\", defaults={\"price\":90}); Service.objects.get_or_create(name=\"Lash Design\", defaults={\"price\":120}); Service.objects.get_or_create(name=\"Design de Sobrancelhas\", defaults={\"price\":50});' && gunicorn anna_beauty.wsgi"
