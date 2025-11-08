@@ -1,1 +1,28 @@
+body {
+  background-color: #fafafa;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.btn-primary {
+  background-color: #e17ca7;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #cf6591;
+}
+
+label {
+  font-weight: 500;
+}
+
+input, select, textarea {
+  border-radius: 8px !important;
+}
 
