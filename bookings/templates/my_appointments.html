@@ -1,1 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>🌸 Minhas Reservas</h3>
+<form method="get" class="mb-3">
+  <label>Digite seu número de WhatsApp:</label>
+  <input type="text" name="phone" class="form-control" placeholder="+55..." required>
+  <button class="btn btn-primary mt-2">Ver reservas</button>
+</form>
+
+{% if appointments %}
+  <h5>Oi {{ client.name }}, olha seus agendamentos:</h5>
+  <ul class="list-group mt-3">
+  {% for a in appointments %}
+    <li class="list-group-item">
+      💖 {{ a.service.name }} — {{ a.start_datetime|date:"d/m/Y H:i" }}
+      <br><small class="text-muted">
+        {% if a.days_left > 0 %}
+          👏👏 Isso! Agendamento confirmado. Faltam {{ a.days_left }} dias pro seu momento de beleza!
+        {% elif a.days_left == 0 %}
+          💅 É hoje, poderosa!
+        {% else %}
+          ✨ Atendimento concluído. Esperamos te ver de novo logo!
+        {% endif %}
+      </small>
+    </li>
+  {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}
 
