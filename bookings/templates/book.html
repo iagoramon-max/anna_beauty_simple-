@@ -1,1 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>💅 Agende seu horário</h3>
+<p>Preencha as informações abaixo e garanta seu momento de beleza:</p>
+<form method="post" id="bookingForm">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary mt-2">Confirmar agendamento</button>
+</form>
+
+<script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITE_KEY }}"></script>
+<script>
+grecaptcha.ready(function() {
+  const form = document.getElementById('bookingForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    grecaptcha.execute('{{ RECAPTCHA_SITE_KEY }}', {action: 'submit'}).then(function(token) {
+      document.querySelector('input[name="recaptcha_token"]').value = token;
+      form.submit();
+    });
+  });
+});
+</script>
+{% endblock %}
 
