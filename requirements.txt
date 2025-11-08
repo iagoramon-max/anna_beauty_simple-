@@ -1,1 +1,10 @@
+Django>=4.2
+djangorestframework
+dj-database-url
+python-dotenv
+celery
+redis
+requests
+gunicorn
+psycopg2-binary
 
